@@ -62,10 +62,10 @@ jobs:
 
 
     - name: NUnit Tests
-      working-directory: YourUnitTestProject/
+      working-directory: ICT3101_Calculator.UnitTests/
       run: dotnet test --no-build --verbosity normal
     
     - name: SpecFlow Tests
-      working-directory: YourSpecFlowTestProject/
+      working-directory: SpecFlowCalculatorTests/
       run: dotnet test --no-build --verbosity normal
     
