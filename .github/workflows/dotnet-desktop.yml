@@ -59,3 +59,13 @@ jobs:
 
     - name: Run Tests
       run: dotnet test --no-build --verbosity normal
+
+
+    - name: NUnit Tests
+      working-directory: YourUnitTestProject/
+      run: dotnet test --no-build --verbosity normal
+    
+    - name: SpecFlow Tests
+      working-directory: YourSpecFlowTestProject/
+      run: dotnet test --no-build --verbosity normal
+    
