@@ -1,0 +1,19 @@
+TASK 19 - Epic
+- Perform quality metric calculations for defect density of a system Defect Density and SSI
+- Use the Musa Logarithmic model to calculate failure intensity and the number of expected failures
+
+
+
+TASK 20 - User Stories
+
+User Story 1: Quality Metric Calculations for Defect Density and SSI
+
+As a system quality engineer,
+I want to calculate defect density and the total number of Shipped Source Instructions (SSI) for successive releases starting from the second release,
+So that I can assess code quality and track codebase changes over time.
+
+User Story 2: Musa Logarithmic Model for Failure Intensity and Expected Failures
+
+As a system quality engineer,
+I want to calculate the failure intensity an the number of expected failures of the system using the Musa Logarithmic model,
+So that I can predict the system’s reliability over time.
