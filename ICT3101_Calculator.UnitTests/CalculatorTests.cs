@@ -59,21 +59,21 @@ namespace ICT3101_Calculator.UnitTests
             Assert.That(result, Is.EqualTo(5));
         }
 
-        [Test]
-        public void Divide_WhenDividingByZero_ShouldThrowArgumentException()
-        {
-            Assert.That(() => _calculator.Divide(10, 0), Throws.ArgumentException);
-        }
+        // [Test]
+        // public void Divide_WhenDividingByZero_ShouldThrowArgumentException()
+        // {
+        //     Assert.That(() => _calculator.Divide(10, 0), Throws.ArgumentException);
+        // }
 
 // Task 14
-        [Test]
-        [TestCase(0, 0)]
-        [TestCase(0, 10)]
-        [TestCase(10, 0)]
-        public void Divide_WithZerosAsInputs_ShouldThrowArgumentException(double a, double b)
-        {
-            Assert.That(() => _calculator.Divide(a, b), Throws.ArgumentException);
-        }
+        // [Test]
+        // [TestCase(0, 0)]
+        // [TestCase(0, 10)]
+        // [TestCase(10, 0)]
+        // public void Divide_WithZerosAsInputs_ShouldThrowArgumentException(double a, double b)
+        // {
+        //     Assert.That(() => _calculator.Divide(a, b), Throws.ArgumentException);
+        // }
 
 // Task 15
         // Factorial Tests

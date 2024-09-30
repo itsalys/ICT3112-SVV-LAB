@@ -105,13 +105,13 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
 
         public double Divide(double num1, double num2)
         {        
-            if (num1 == 0 || num2 == 0)
-            {
-                throw new ArgumentException("Cannot divide or divide by zero.");
-            }
+            // if (num1 == 0 || num2 == 0)
+            // {
+            //     throw new ArgumentException("Cannot divide or divide by zero.");
+            // }
 
             // LAB 2 - Task 9
-                // if (num1 == 0 && num2 == 0) return 1;
+                if (num1 == 0 && num2 == 0) return 1;
                 if (num2 == 0) return double.PositiveInfinity; 
 
             return num1 / num2;

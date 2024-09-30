@@ -21,8 +21,8 @@ Scenario: Dividing by zeros
     When I have entered 15 and 0 into the calculator and press divide
     Then the division result equals positive_infinity
 
-# @Divisions
-# Scenario: Dividing by zero by zero
-#     Given I have a calculator
-#     When I have entered 0 and 0 into the calculator and press divide
-#     Then the division result should be 1
+@Divisions
+Scenario: Dividing by zero by zero
+    Given I have a calculator
+    When I have entered 0 and 0 into the calculator and press divide
+    Then the division result should be 1
