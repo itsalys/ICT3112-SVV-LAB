@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.IO;
 
 namespace ICT3101_Calculator
 {
@@ -7,91 +8,97 @@ namespace ICT3101_Calculator
     {
         public Calculator() { }
 
-public double DoOperation(double num1, double num2, double num3, double num4, string op)
-{
-    double result = double.NaN; // Default value
-    
-    switch (op)
-    {
-        case "a": // Add
-            result = Add(num1, num2);
-            break;
-        case "s": // Subtract
-            result = Subtract(num1, num2);
-            break;
-        case "m": // Multiply
-            result = Multiply(num1, num2);
-            break;
-        case "d": // Divide
-            result = Divide(num1, num2);
-            break;
-        case "f": // Factorial
-            result = Factorial(num1);
-            break;
-        case "t": // Area of Triangle
-            result = AreaOfTriangle(num1, num2);
-            break;
-        case "c": // Area of Circle
-            result = AreaOfCircle(num1);
-            break;
-        case "u": // Unknown Function A
-            result = UnknownFunctionA((int)num1, (int)num2);
-            break;
-        case "b": // Unknown Function B
-            result = UnknownFunctionB((int)num1, (int)num2);
-            break;
-        case "1": // Mean Time Between Failures (MTBF)
-            result = CalculateMTBF(num1, num2);
-            break;
-        case "2": // Availability
-            result = CalculateAvailability(num1, num2);
-            break;
-        case "3": // Defect Density
-            result = CalculateFailureIntensity(num1, num2, num3);
-            break;
-        case "4": // Total SSI
-            result = CalculateExpectedFailures(num1, num2, num3);
-            break;
-        case "5": // Musa Log Failure Intensity
-            result = CalculateMusaLogFailureIntensity(num1, num2, num3);
-            break;
-        case "6": // Musa Log Expected Failures
-            result = CalculateMusaLogExpectedFailures(num1, num2, num3);
-            break;
-        case "7": // Defect Density
-            result = CalculateDefectDensity(num1, num2);
-            break;
-        case "8": // Total SSI
-            result = CalculateTotalSSI(num1, num2, num3, num4);
-            break;
-        default:
-            throw new ArgumentException("Invalid operation");
-    }
-    return result;
-}
+        public double DoOperation(double num1, double num2, double num3, double num4, string op)
+        {
+            double result = double.NaN; // Default value
 
+            switch (op)
+            {
+                case "a": // Add
+                    result = Add(num1, num2);
+                    break;
+                case "s": // Subtract
+                    result = Subtract(num1, num2);
+                    break;
+                case "m": // Multiply
+                    result = Multiply(num1, num2);
+                    break;
+                case "d": // Divide
+                    result = Divide(num1, num2);
+                    break;
+                case "f": // Factorial
+                    result = Factorial(num1);
+                    break;
+                case "t": // Area of Triangle
+                    result = AreaOfTriangle(num1, num2);
+                    break;
+                case "c": // Area of Circle
+                    result = AreaOfCircle(num1);
+                    break;
+                case "u": // Unknown Function A
+                    result = UnknownFunctionA((int)num1, (int)num2);
+                    break;
+                case "b": // Unknown Function B
+                    result = UnknownFunctionB((int)num1, (int)num2);
+                    break;
+                case "1": // Mean Time Between Failures (MTBF)
+                    result = CalculateMTBF(num1, num2);
+                    break;
+                case "2": // Availability
+                    result = CalculateAvailability(num1, num2);
+                    break;
+                case "3": // Defect Density
+                    result = CalculateFailureIntensity(num1, num2, num3);
+                    break;
+                case "4": // Total SSI
+                    result = CalculateExpectedFailures(num1, num2, num3);
+                    break;
+                case "5": // Musa Log Failure Intensity
+                    result = CalculateMusaLogFailureIntensity(num1, num2, num3);
+                    break;
+                case "6": // Musa Log Expected Failures
+                    result = CalculateMusaLogExpectedFailures(num1, num2, num3);
+                    break;
+                case "7": // Defect Density
+                    result = CalculateDefectDensity(num1, num2);
+                    break;
+                case "8": // Total SSI
+                    result = CalculateTotalSSI(num1, num2, num3, num4);
+                    break;
+                case "9": // Total GenMagicNum
+                    // result = GenMagicNum(num1);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid operation");
+            }
+            return result;
+        }
 
         public double Add(double num1, double num2)
         {
-           // see if both numbers in String only contains 0 and 1s (binary)
-           // convert num1 and num2 into string           
-           string num1String = num1.ToString("F0");
-           string num2String = num2.ToString("F0");
-           // check if num1 and num2 are binary           
-           if (num1String.All(c => c == '0' || c == '1') && num2String.All(c => c == '0' ||  c == '1'))
-           {               
-                return Convert.ToInt32( (num1String + num2String), 2);
-           }
-           return (num1 + num2);       
+            // see if both numbers in String only contains 0 and 1s (binary)
+            // convert num1 and num2 into string
+            string num1String = num1.ToString("F0");
+            string num2String = num2.ToString("F0");
+            // check if num1 and num2 are binary
+            if (
+                num1String.All(c => c == '0' || c == '1')
+                && num2String.All(c => c == '0' || c == '1')
+            )
+            {
+                return Convert.ToInt32((num1String + num2String), 2);
+            }
+            return (num1 + num2);
         }
-//         {
 
-//             return num1+num2;
+        //         {
 
-// // LAB 2 - Task 9
-//             string val3 = num1.ToString() + num2.ToString();
-//             return Convert.ToInt32(val3, 2);
-//         }
+        //             return num1+num2;
+
+        // // LAB 2 - Task 9
+        //             string val3 = num1.ToString() + num2.ToString();
+        //             return Convert.ToInt32(val3, 2);
+        //         }
 
         public double Subtract(double num1, double num2)
         {
@@ -104,15 +111,17 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
         }
 
         public double Divide(double num1, double num2)
-        {        
+        {
             // if (num1 == 0 || num2 == 0)
             // {
             //     throw new ArgumentException("Cannot divide or divide by zero.");
             // }
 
             // LAB 2 - Task 9
-                if (num1 == 0 && num2 == 0) return 1;
-                if (num2 == 0) return double.PositiveInfinity; 
+            if (num1 == 0 && num2 == 0)
+                return 1;
+            if (num2 == 0)
+                return double.PositiveInfinity;
 
             return num1 / num2;
         }
@@ -142,7 +151,7 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
             }
             return result;
         }
-    
+
         // Task 16 - Area of Triangle
         public double AreaOfTriangle(double height, double baseLength)
         {
@@ -176,8 +185,7 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
             return Factorial(num1) / Factorial(Subtract(num1, num2));
         }
 
-
-            // Task 17 - UnknownFunctionB
+        // Task 17 - UnknownFunctionB
         public double UnknownFunctionB(int num1, int num2)
         {
             if (num1 < 0 || num2 < 0)
@@ -194,7 +202,7 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
         {
             if (mttf < 0 || mttr < 0)
             {
-                return -1;  
+                return -1;
             }
             return mttf + mttr;
         }
@@ -203,7 +211,7 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
         {
             if (mttf < 0 || mttr < 0)
             {
-                return -1;  
+                return -1;
             }
             double mtbf = CalculateMTBF(mttf, mttr);
             return mttf / mtbf;
@@ -214,13 +222,13 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
         public double CalculateFailureIntensity(double lambda_0, double u, double v_0)
         {
             double result = lambda_0 * (1 - (u / v_0));
-            return Math.Round(result, 0);  
+            return Math.Round(result, 0);
         }
 
         public double CalculateExpectedFailures(double lambda_0, double t, double v_0)
         {
-            double result = v_0 * (1 - Math.Exp(-(lambda_0 / v_0)*t));
-            return Math.Round(result, 0);  
+            double result = v_0 * (1 - Math.Exp(-(lambda_0 / v_0) * t));
+            return Math.Round(result, 0);
         }
 
         // LAB 2.3
@@ -229,7 +237,7 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
         {
             if (linesOfCode <= 0 || defects < 0)
             {
-                return -1;  
+                return -1;
             }
             return defects / linesOfCode;
         }
@@ -238,7 +246,7 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
         {
             if (SSI < 0 || CSI < 0 || delCode < 0 || changeCode < 0)
             {
-                return -1;  
+                return -1;
             }
             double result = SSI + CSI - delCode - changeCode;
             return Math.Round(result, 0);
@@ -247,16 +255,29 @@ public double DoOperation(double num1, double num2, double num3, double num4, st
         public double CalculateMusaLogFailureIntensity(double lambda_0, double th, double u)
         {
             double result = lambda_0 * Math.Exp(-th * u);
-            return Math.Round(result, 0);  
+            return Math.Round(result, 0);
         }
-        
 
         public double CalculateMusaLogExpectedFailures(double lambda_0, double th, double t)
         {
             double result = (1 / th) * Math.Log((lambda_0 * th * t) + 1);
-            return Math.Round(result, 0);  
+            return Math.Round(result, 0);
         }
 
-    }   
+        public double GenMagicNum(double input, IFileReader fileReader)
+        {
+            double result = 0;
+            int choice = Convert.ToInt16(input);
 
+            string[] magicStrings = fileReader.Read("MagicNumbers.txt");
+
+            if ((choice >= 0) && (choice < magicStrings.Length))
+            {
+                result = Convert.ToDouble(magicStrings[choice]);
+            }
+
+            result = (result > 0) ? (2 * result) : (-2 * result);
+            return result;
+        }
+    }
 }

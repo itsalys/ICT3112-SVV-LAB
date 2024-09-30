@@ -1,3 +1,4 @@
+using Moq;
 using NUnit.Framework;
 
 namespace ICT3101_Calculator.UnitTests
@@ -6,9 +7,16 @@ namespace ICT3101_Calculator.UnitTests
     {
         private Calculator _calculator;
 
+        private Mock<IFileReader> _mockFileReader;
+
         [SetUp]
         public void Setup()
         {
+            _mockFileReader = new Mock<IFileReader>();
+            _mockFileReader
+                .Setup(fr => fr.Read("MagicNumbers.txt"))
+                .Returns(new string[] { "1", "5", "10", "-1"});
+
             _calculator = new Calculator();
         }
 
@@ -20,7 +28,7 @@ namespace ICT3101_Calculator.UnitTests
             Assert.That(result, Is.EqualTo(30));
         }
 
-// Task 13
+        // Task 13
         // Subtraction Tests
         [Test]
         public void Subtract_WhenSubtractingTwoNumbers_ResultEqualToDifference()
@@ -65,7 +73,7 @@ namespace ICT3101_Calculator.UnitTests
         //     Assert.That(() => _calculator.Divide(10, 0), Throws.ArgumentException);
         // }
 
-// Task 14
+        // Task 14
         // [Test]
         // [TestCase(0, 0)]
         // [TestCase(0, 10)]
@@ -75,7 +83,7 @@ namespace ICT3101_Calculator.UnitTests
         //     Assert.That(() => _calculator.Divide(a, b), Throws.ArgumentException);
         // }
 
-// Task 15
+        // Task 15
         // Factorial Tests
         [Test]
         public void Factorial_WhenGivenZero_ShouldReturnOne()
@@ -97,8 +105,7 @@ namespace ICT3101_Calculator.UnitTests
             Assert.That(() => _calculator.Factorial(-5), Throws.ArgumentException);
         }
 
-
-// Task 16 
+        // Task 16
 
         // Test for area of triangle
         [Test]
@@ -109,7 +116,7 @@ namespace ICT3101_Calculator.UnitTests
 
             double result = _calculator.AreaOfTriangle(height, baseLength);
 
-            Assert.That(result, Is.EqualTo(25));  // Formula: (height * baseLength) / 2
+            Assert.That(result, Is.EqualTo(25)); // Formula: (height * baseLength) / 2
         }
 
         // Test for area of circle
@@ -120,7 +127,7 @@ namespace ICT3101_Calculator.UnitTests
 
             double result = _calculator.AreaOfCircle(radius);
 
-            Assert.That(result, Is.EqualTo(Math.PI * Math.Pow(radius, 2)));  // Formula: π * r^2
+            Assert.That(result, Is.EqualTo(Math.PI * Math.Pow(radius, 2))); // Formula: π * r^2
         }
 
         // Task 17 - UnknownFunctionA Tests
@@ -128,21 +135,21 @@ namespace ICT3101_Calculator.UnitTests
         public void UnknownFunctionA_WhenGivenTest0_Result()
         {
             double result = _calculator.UnknownFunctionA(5, 5);
-            Assert.That(result, Is.EqualTo(120));  // 5! = 120
+            Assert.That(result, Is.EqualTo(120)); // 5! = 120
         }
 
         [Test]
         public void UnknownFunctionA_WhenGivenTest1_Result()
         {
             double result = _calculator.UnknownFunctionA(5, 4);
-            Assert.That(result, Is.EqualTo(120));  // 5! = 120
+            Assert.That(result, Is.EqualTo(120)); // 5! = 120
         }
 
         [Test]
         public void UnknownFunctionA_WhenGivenTest2_Result()
         {
             double result = _calculator.UnknownFunctionA(5, 3);
-            Assert.That(result, Is.EqualTo(60));  // 5! / (5 - 3) = 120 / 2 = 60
+            Assert.That(result, Is.EqualTo(60)); // 5! / (5 - 3) = 120 / 2 = 60
         }
 
         [Test]
@@ -162,21 +169,21 @@ namespace ICT3101_Calculator.UnitTests
         public void UnknownFunctionB_WhenGivenTest0_Result()
         {
             double result = _calculator.UnknownFunctionB(5, 5);
-            Assert.That(result, Is.EqualTo(1));  // 5! / 5! = 1
+            Assert.That(result, Is.EqualTo(1)); // 5! / 5! = 1
         }
 
         [Test]
         public void UnknownFunctionB_WhenGivenTest1_Result()
         {
             double result = _calculator.UnknownFunctionB(5, 4);
-            Assert.That(result, Is.EqualTo(5));  // Factorial-based calculation gives 5
+            Assert.That(result, Is.EqualTo(5)); // Factorial-based calculation gives 5
         }
 
         [Test]
         public void UnknownFunctionB_WhenGivenTest2_Result()
         {
             double result = _calculator.UnknownFunctionB(5, 3);
-            Assert.That(result, Is.EqualTo(10));  // Factorial-based calculation gives 10
+            Assert.That(result, Is.EqualTo(10)); // Factorial-based calculation gives 10
         }
 
         [Test]
@@ -191,6 +198,18 @@ namespace ICT3101_Calculator.UnitTests
             Assert.That(() => _calculator.UnknownFunctionB(4, 5), Throws.ArgumentException);
         }
 
-    }
+        [Test]
+        public void GenMagicNum_PositiveInput_ReturnsExpectedResult()
+        {
+            double result = _calculator.GenMagicNum(1, _mockFileReader.Object);
+            Assert.That(result, Is.EqualTo(10));
+        }
 
+        [Test]
+        public void GenMagicNum_InvalidInput_ReturnsZero()
+        {
+            double result = _calculator.GenMagicNum(3, _mockFileReader.Object);
+            Assert.That(result, Is.EqualTo(2));
+        }
+    }
 }
