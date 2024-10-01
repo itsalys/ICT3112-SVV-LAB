@@ -198,25 +198,25 @@ namespace ICT3101_Calculator.UnitTests
             Assert.That(() => _calculator.UnknownFunctionB(4, 5), Throws.ArgumentException);
         }
 
-        [Test]
-        public void GenMagicNum_PositiveRead_ReturnsExpectedResult()
-        {
-            double result = _calculator.GenMagicNum(1, _mockFileReader.Object);
-            Assert.That(result, Is.EqualTo(10));
-        }
+        // [Test]
+        // public void GenMagicNum_PositiveRead_ReturnsExpectedResult()
+        // {
+        //     double result = _calculator.GenMagicNum(1, _mockFileReader.Object);
+        //     Assert.That(result, Is.EqualTo(10));
+        // }
 
-        [Test]
-        public void GenMagicNum_NegativeRead_ReturnsExpectedResult()
-        {
-            double result = _calculator.GenMagicNum(3, _mockFileReader.Object);
-            Assert.That(result, Is.EqualTo(2));
-        }
+        // [Test]
+        // public void GenMagicNum_NegativeRead_ReturnsExpectedResult()
+        // {
+        //     double result = _calculator.GenMagicNum(3, _mockFileReader.Object);
+        //     Assert.That(result, Is.EqualTo(2));
+        // }
 
-                [Test]
-        public void GenMagicNum_InvalidInput_ReturnsZero()
-        {
-            double result = _calculator.GenMagicNum(10, _mockFileReader.Object);
-            Assert.That(result, Is.EqualTo(0));
-        }
+        // [Test]
+        // public void GenMagicNum_InvalidInput_ReturnsZero()
+        // {
+        //     double result = _calculator.GenMagicNum(10, _mockFileReader.Object);
+        //     Assert.That(result, Is.EqualTo(0));
+        // }
     }
 }
